@@ -1,0 +1,34 @@
+closest pair in brute force algorithm
+#include <stdio.h>
+#include <float.h>
+#include <math.h>
+struct Point {
+    int x, y;
+};
+double dist(struct Point p1, struct Point p2) {
+    return sqrt((p1.x - p2.x) * (p1.x - p2.x) + 
+                (p1.y - p2.y) * (p1.y - p2.y));
+}
+double bruteForce(struct Point P[], int n) {
+    double min = DBL_MAX;
+    for (int i = 0; i < n; ++i)
+        for (int j = i + 1; j < n; ++j)
+            if (dist(P[i], P[j]) < min)
+                min = dist(P[i], P[j]);
+    return min;
+}
+
+int main() {
+    struct Point P[] = {{2, 3}, {12, 30}, {40, 50}, {5, 1}, {12, 10}, {3, 4}};
+    int n = sizeof(P) / sizeof(P[0]);
+    printf("The smallest distance is %f\n", bruteForce(P, n));
+    return 0;
+}
+Output:
+The smallest distance is 1.414214
+Algorithm:
+Initialize Minimum Distance: Set the initial minimum distance (minDist) to a very large value (infinity).
+Iterate Over Points: Loop through each point i from 0 to n-1.
+Pairwise Comparison: For each point i, loop through each subsequent point j from i+1 to n-1.
+Calculate Distance: Compute the Euclidean distance between points i and j.
+Update Minimum Distance: If the computed distance is smaller than minDist, update minDist.
