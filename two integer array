@@ -1,0 +1,38 @@
+Given two integer arrays nums1 and nums2, return an array of their Intersection. Each element in the result must be unique and you may return the result in any order.
+#include <stdio.h>
+    int nums1[] = {4, 9, 5};
+    int nums2[] = {9, 4, 9, 8, 4};
+    int nums1_size = sizeof(nums1) / sizeof(nums1[0]);
+    int nums2_size = sizeof(nums2) / sizeof(nums2[0]);
+    int hash[1000] = {0};
+    int result[100];
+    int k = 0;
+    // Mark the elements present in nums2
+    for (int i = 0; i < nums2_size; i++) {
+        hash[nums2[i]] = 1;
+    }
+    // Find the intersection
+    for (int i = 0; i < nums1_size; i++) {
+        if (hash[nums1[i]] == 1) {
+            // Ensure each element is added only once
+            hash[nums1[i]] = 0;
+            result[k++] = nums1[i];
+        }
+    }
+    printf("Intersection of the two arrays: ");
+    for (int i = 0; i < k; i++) {
+        printf("%d ", result[i]);
+    }
+}
+Output:
+Intersection of the two arrays: 4 9
+Algorithm for Finding Intersection of Two Arrays
+1. Initialize arrays `nums1` and `nums2`.
+2. Initialize `hash` array of size 1000.
+3. Initialize `result` array and `k`.
+4. 
+   - Mark elements from `nums2` in `hash`.
+   - Find intersection:
+     - Iterate through `nums1`.
+     - If element exists in `hash`, add to `result` and mark in `hash`.
+5. Print elements in `result`.
